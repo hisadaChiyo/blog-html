@@ -1,0 +1,1003 @@
+@charset "utf-8";
+
+/*
+Theme Name: Hisada-Blog
+Author: Chiyo Hisada
+Description: WordPressを学んで、最初のテーマです。
+Version: 1.0
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: blog-sample
+*/
+
+/* 共有部分
+--------------------------------*/
+body {
+    color: #333;
+    font-size: 16px;
+    background-color: #fff;
+    background-image:
+        radial-gradient(#d5d3d3 7.5%, transparent 8.5%),
+        radial-gradient(#d5d3d3 7.5%, transparent 8.5%);
+    background-size: 80px 80px;
+    background-position: 0 0, 40px 40px;
+    font-family: Arial, "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", Meiryo, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.inner {
+    width: 90.625%;
+    max-width: 1366px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.top {
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+h1 {
+    font-family: Georgia, "Hiragino Mincho ProN",
+        "Yu Mincho", serif;
+    font-size: 25px;
+    letter-spacing: 0.03em;
+    font-weight: bold;
+}
+
+h1#menu1,
+h1.side-title {
+    scroll-margin-top: 100px;
+}
+
+h1[id] {
+    scroll-margin-top: 80px;
+}
+
+/* header */
+header {
+    padding: 15px 0;
+    background-color: rgba(75, 71, 71, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+header img {
+    width: 30px;
+    height: auto;
+}
+
+header .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    color: #000000;
+    font-family: 'Crimson Text', serif;
+}
+
+.gnav li a:hover {
+    color: #eab2d9;
+}
+
+header ul {
+    display: none;
+}
+
+header ul.open {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    height: auto;
+    padding: 30px 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 999;
+    gap: 20px;
+}
+
+.hamburger-btn {
+    width: 30px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #eab2d9;
+    transition: all 0.3s;
+}
+
+.hamburger-btn.open span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.hamburger-btn.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.open span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+.logo-link {
+    display: inline-block;
+    transition: opacity 0.3s;
+    margin-right: auto;
+}
+
+.logo-link:hover {
+    opacity: 0.7;
+}
+
+.meinvisual {
+    margin-top: 50px;
+}
+
+/* blog */
+.blog .title {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    margin: 100px 0 20px;
+}
+
+.blog h1 {
+    text-align: end;
+}
+
+.blog p {
+    background-color: #fff;
+}
+
+.blog h2 {
+    background-color: #fff;
+}
+
+.blog h2:hover {
+    color: #c98db5;
+}
+
+.blog img {
+    width: 81px;
+    height: auto;
+}
+
+.blog .imgs {
+    width: 100%;
+    height: 180px;
+    background-color: #fff;
+    position: relative;
+
+    z-index: 0;
+    overflow: hidden;
+}
+
+.blog .posts:nth-child(n+5) {
+    display: none;
+}
+
+/* サムネイル画像を囲むリンク */
+.thumbnail-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail img.default-thumbnail {
+    object-fit: contain;
+    padding: 1%;
+    box-sizing: border-box;
+}
+
+.thumbnail-link:hover img {
+    transform: scale(1.15);
+}
+
+/* post */
+.blog .post {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 50px;
+}
+
+.blog .posts {
+    width: 258px;
+    height: 350px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    line-height: 1.8;
+}
+
+/* ボタン */
+.wp-block-button__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333333;
+    background-color: #fff;
+    border: 1px solid #eab2d9;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.wp-block-button__link:hover {
+    background-color: #eab2d9;
+    border-color: #eab2d9;
+}
+
+
+
+/* 🏷️ 画像の上に重ねるカテゴリータグ（.tags a と同じ見た目に揃える） */
+.blog .posts .imgs a.category-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-block;
+    width: fit-content;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: #333333;
+    white-space: nowrap;
+    z-index: 3;
+}
+
+.blog .posts .imgs a.category-tag::before,
+.tags a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #ffa7a7;
+    -webkit-mask-image: url('./blog_img/tekusutxya.png');
+    mask-image: url('./blog_img/tekusutxya.png');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+
+/* -----------------------------------
+   1. アーカイブページ用 (the_posts_pagination)
+----------------------------------- */
+/* 外側の囲み要素を中央揃え＆フレックス化 */
+div.pagination,
+div.pagination nav.navigation,
+div.pagination nav.navigation div.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* リスト要素（ul）を強制横並び化 */
+div.pagination ul.page-numbers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    list-style: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+/* リスト項目（li）のブロック解除 */
+div.pagination ul.page-numbers li {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 数字・ボタンの見た目（丸型） */
+div.pagination ul.page-numbers li a.page-numbers,
+div.pagination ul.page-numbers li span.page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* 「<」「>」ボタン（横長オーバル形） */
+div.pagination ul.page-numbers li a.prev.page-numbers,
+div.pagination ul.page-numbers li a.next.page-numbers {
+    width: auto;
+    padding: 0 16px;
+    border-radius: 20px;
+}
+
+/* ホバー時 */
+div.pagination ul.page-numbers li a.page-numbers:hover {
+    background-color: #f5f5f5;
+    border-color: #bbb;
+}
+
+/* 現在のページ (current) */
+div.pagination ul.page-numbers li span.current {
+    background-color: #eab2d9;
+    border-color: #eab2d9;
+    color: #ffffff;
+    cursor: default;
+}
+
+/* 三点リーダー（…） */
+div.pagination ul.page-numbers li span.dots {
+    border: none;
+    background: transparent;
+    width: auto;
+}
+
+
+/* -----------------------------------
+   2. 詳細記事・一覧戻る用 (pagination2)
+----------------------------------- */
+div.pagination2 ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 40px 0;
+    padding: 0;
+}
+
+div.pagination2 a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+    color: #333333;
+    background-color: #fff;
+    border: 1px solid #eab2d9;
+    border-radius: 50%;
+    font-size: 14px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+div.pagination2 li.back a {
+    width: auto;
+    height: auto;
+    padding: 8px 20px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+div.pagination2 a:hover {
+    background-color: #eab2d9;
+    border-color: #eab2d9;
+}
+
+/* 8. 三点リーダー（…） */
+.pagination span.dots {
+    border: none;
+    background: transparent;
+    width: auto;
+}
+
+/*search*/
+.search.title {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    text-align: right;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.search-field {
+    border: 1px solid #eab2d9;
+    background-color: #fff;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.search-btn {
+    border: 1px solid #eab2d9;
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.search-btn:hover {
+    background-color: #eab2d9;
+}
+
+.search img {
+    width: 45px;
+    height: auto;
+}
+
+.side-search {
+    text-align: center;
+}
+
+.pagination2 li :hover {
+    background-color: #eab2d9;
+}
+
+.kensaku {
+    margin-top: 90px;
+}
+
+.not p {
+    margin: nann;
+    margin-top: 20px;
+
+    text-align: left;
+    justify-self: start;
+
+}
+
+.search.is-searched {
+    padding-bottom: 100px;
+}
+
+/* Categories */
+.Categories .title {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    text-align: right;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.Categories .tags {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.Categories img {
+    width: 30px;
+    height: auto;
+}
+
+.Categories .tags a:hover::before {
+    background-color: #f8dbee;
+}
+
+.tags a {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+
+/* profile */
+.Profile {
+    text-align: center;
+    padding-bottom: 100px;
+}
+
+.Profile .title {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    text-align: right;
+    align-items: center;
+    margin: 100px 0 20px;
+}
+
+.Profile p {
+    margin-bottom: 20px;
+}
+
+.Profile .name {
+    font-size: 20px;
+}
+
+.Profile .sixyumi {
+    font-size: 20px;
+}
+
+.Profile img {
+    width: 30px;
+    height: auto;
+}
+
+/* footer */
+footer {
+    text-align: center;
+    background-color: #4B4747;
+    color: #ffffff;
+    padding: 25px 0 25px;
+}
+
+
+.recommend {
+    margin-top: 60px;
+}
+
+.recommend-title {
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+/* index.html（トップページ）専用
+--------------------------------*/
+.container {
+    background-image: url('./blog_img/mein0.png');
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-size: 100% auto;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visuallyHidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.text {
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Crimson Text', serif;
+    font-size: 20px;
+    font-weight: bold;
+    transform-origin: left;
+    padding: 0 20px;
+}
+
+.text>.char {
+    filter: blur(8px);
+    opacity: 0;
+}
+
+.text.is-active>.char {
+    animation: text09 1s cubic-bezier(0.77, 0, 0.175, 1);
+    animation-fill-mode: forwards;
+    animation-delay: calc(0.12s * var(--char-index));
+}
+
+@keyframes text09 {
+    0% {
+        filter: blur(8px);
+        opacity: 0;
+    }
+
+    33.3% {
+        filter: blur(2px);
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+/*single.html
+--------------------------------*/
+.singlepe_ji {
+    background-color: #fff;
+    padding-top: 100px;
+    line-height: 1.8;
+    color: #333333;
+    letter-spacing: 0.05em;
+    font-family: Arial, "Hiragino Kaku Gothic ProN",
+        "Yu Gothic", Meiryo, sans-serif;
+}
+
+.singlepe_ji h1,
+.singlepe_ji h2,
+.singlepe_ji h3 {
+    font-family: Georgia, "Hiragino Mincho ProN",
+        "Yu Mincho", serif;
+}
+
+.singlepe_ji h1 {
+    font-size: 30px;
+    padding-bottom: 12px;
+}
+
+.singlepe_ji h3 {
+    position: relative;
+    display: inline-block;
+    margin-top: 40px;
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.singlepe_ji h3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    background-image: url('./blog_img/kissmrku.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.singlepe_ji h2 {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 0.1em;
+    z-index: 1;
+
+    background-image: url('./blog_img/senn.png');
+    background-repeat: no-repeat;
+    background-size: 100% 5px;
+    background-position: bottom left;
+}
+
+.singlepe_ji h2::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-image: url('./blog_img/parett.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.singlepe_ji .mein_text {
+    margin-top: 20px;
+}
+
+.singlepe_ji .Preface img {
+    width: 100vw;
+    max-width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.Prefaces {
+    margin-top: 50px;
+}
+
+.sintixyan img,
+.koimikuji img {
+    margin-bottom: 30px;
+}
+
+.sintixyan p,
+.koimikuji p {
+    clear: both;
+}
+
+.paret {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.paret img {
+    height: 35px;
+    width: auto;
+}
+
+.end {
+    padding-bottom: 100px;
+    background-color: #fff;
+}
+
+#respond .title {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: end;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#respond .title img {
+    width: 30px;
+    height: auto;
+}
+
+.comment #respond {
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: 0;
+    padding-bottom: 100px;
+}
+
+.comment-reply-title {
+    text-align: right;
+    font-family: serif;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.comment-form label {
+    display: block;
+    text-align: right;
+    margin-bottom: 8px;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: 0;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    padding: 12px;
+    border: 1px solid #eab2d9;
+    background-color: #fff;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.comment-form textarea {
+    resize: vertical;
+}
+
+.comment-form .form-submit {
+    width: 70%;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+}
+
+.comment-form .form-submit input[type="submit"] {
+    padding: 10px 24px;
+    background-color: #fff;
+    border: 1px solid #eab2d9;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.comment-form .form-submit input[type="submit"]:hover {
+    background-color: #eab2d9;
+    border-color: #eab2d9;
+}
+
+.comment-form label .required {
+    color: #e74c3c;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 6px;
+}
+
+/*メディアクエリ
+--------------------------------*/
+@media (740px < width) {
+    .hamburger-btn {
+        display: none;
+    }
+
+    header ul {
+        display: flex;
+        gap: 20px;
+        color: #fff;
+        font-family: 'Crimson Text', serif;
+    }
+
+    .text {
+        font-size: 50px;
+    }
+
+    .container {
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(./blog_img/mein0.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+@media (600px <=width) {
+    .blog .post {
+        grid-template-columns: repeat(2, 258px);
+        justify-content: center;
+    }
+
+    .blog .posts:nth-child(-n+2) {
+        display: flex;
+    }
+
+    .blog .posts:nth-child(n+3) {
+        display: none;
+    }
+}
+
+@media (900px <=width) {
+    .blog .post {
+        grid-template-columns: repeat(3, 258px);
+    }
+
+    .blog .posts:nth-child(-n+3) {
+        display: flex;
+    }
+
+    .blog .posts:nth-child(n+4) {
+        display: none;
+    }
+}
+
+@media (1200px <=width) {
+    .blog .post {
+        grid-template-columns: repeat(4, 258px);
+    }
+
+    .blog .posts:nth-child(-n+4) {
+        display: flex;
+    }
+
+    .blog .posts:nth-child(n+5) {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .text>.char {
+        filter: blur(0) !important;
+        opacity: 1 !important;
+        animation: none !important;
+    }
+
+    .singlepe_ji h1 {
+        font-size: 30px;
+    }
+
+    .singlepe_ji h2 {
+        font-size: 25px;
+    }
+
+    .singlepe_ji h3 {
+        font-size: 19px;
+    }
+
+    .comment-reply-title {
+        font-size: 16px;
+    }
+}
+
+/* 404ページ */
+.comment .error {
+    margin-top: 50px;
+    font-size: 140px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.comment .errortext {
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+.errortext {
+    text-align: center;
+}
+
+.errortext p {
+    margin: 10px 0;
+}
+
+.meikutati {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.meikutati img {
+    width: 190px;
+    height: auto;
+}
