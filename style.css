@@ -284,7 +284,6 @@ header ul.open {
 }
 
 
-
 /* 🏷️ 画像の上に重ねるカテゴリータグ（.tags a と同じ見た目に揃える） */
 .blog .posts .imgs a.category-tag {
     position: absolute;
@@ -320,9 +319,10 @@ header ul.open {
 }
 
 
-/* -----------------------------------
-   1. アーカイブページ用 (the_posts_pagination)
------------------------------------ */
+/* =================================
+   アーカイブページ
+   the_posts_pagination
+================================= */
 /* 外側の囲み要素を中央揃え＆フレックス化 */
 div.pagination,
 div.pagination nav.navigation,
@@ -401,9 +401,10 @@ div.pagination ul.page-numbers li span.dots {
 }
 
 
-/* -----------------------------------
-   2. 詳細記事・一覧戻る用 (pagination2)
------------------------------------ */
+/* =================================
+   詳細記事・一覧戻る
+   pagination2
+================================= */
 div.pagination2 ul {
     display: flex;
     justify-content: space-between;
@@ -496,7 +497,6 @@ div.pagination2 a:hover {
 }
 
 .not p {
-    margin: nann;
     margin-top: 20px;
 
     text-align: left;
@@ -662,8 +662,9 @@ footer {
     }
 }
 
-/*single.html
---------------------------------*/
+/* =================================
+   single.html（記事詳細）
+================================= */
 .singlepe_ji {
     background-color: #fff;
     padding-top: 100px;
@@ -797,10 +798,10 @@ footer {
 }
 
 .comment-author {
-    margin: 0;
+    margin: 0 0 4px;
+    color: #c98db5;
     font-size: 1.1rem;
     font-weight: bold;
-    color: #c98db5;
 }
 
 .comment-date {
@@ -896,7 +897,6 @@ footer {
 
 /* コメント入力欄 */
 .comment-form textarea {
-    min-height: 100px;
     height: 100px;
     resize: none;
 }
@@ -958,9 +958,7 @@ footer {
 }
 
 .comment-card.is-reply {
-    width: 100%;
     max-width: 400px;
-    margin-left: auto;
     margin-right: 40px;
 }
 
@@ -973,20 +971,12 @@ footer {
     box-sizing: border-box;
 }
 
-/* コメント投稿者 */
-.comment-author {
-    margin: 0 0 4px;
-    font-weight: bold;
-    color: #c98db5;
-}
-
-.comment-text p {
-    margin: 0;
-}
+/* コメントカード右上の飾り */
 
 
-/*メディアクエリ
---------------------------------*/
+/* =================================
+   メディアクエリ
+================================= */
 @media (740px < width) {
     .hamburger-btn {
         display: none;
