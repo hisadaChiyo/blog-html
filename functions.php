@@ -106,25 +106,35 @@ function my_comment_template($comment, $args, $depth)
 {
 ?>
     <li id="comment-<?php comment_ID(); ?>" <?php comment_class('comment-card'); ?>>
+
+        <?php if ($comment->comment_parent != 0) : ?>
+            <div class="reply-label">↳ 返信</div>
+        <?php endif; ?>
+
         <div class="comment-card-inner">
+
             <div class="comment-header">
                 <p class="comment-author"><?php comment_author(); ?></p>
+
                 <time class="comment-date" datetime="<?php echo get_comment_date('c'); ?>">
                     <?php echo get_comment_date('Y年n月j日 H:i'); ?>
                 </time>
             </div>
+
             <div class="comment-text">
                 <?php comment_text(); ?>
             </div>
+
             <div class="comment-reply">
                 <?php
                 comment_reply_link(array_merge($args, array(
-                    'reply_text' => '返信',
+                    'reply_text' => '<span class="reply-arrow">&#8617;</span> 返信',
                     'depth'      => $depth,
                     'max_depth'  => $args['max_depth'],
                 )));
                 ?>
             </div>
+
         </div>
     </li>
 <?php
