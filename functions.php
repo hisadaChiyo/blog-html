@@ -139,3 +139,10 @@ function my_comment_template($comment, $args, $depth)
     </li>
 <?php
 }
+function restrict_search_to_posts($query)
+{
+    if (! is_admin() && $query->is_main_query() && $query->is_search()) {
+        $query->set('post_type', 'post');
+    }
+}
+add_action('pre_get_posts', 'restrict_search_to_posts');
