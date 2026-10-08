@@ -561,15 +561,17 @@ div.pagination2 a:hover {
 }
 
 .Profile p {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .Profile .name {
     font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .Profile .sixyumi {
     font-size: 20px;
+    margin-bottom: 20x;
 }
 
 .Profile img {
