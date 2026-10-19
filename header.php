@@ -12,7 +12,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body class="top" <?php body_class(); ?>>
+<body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     <header>
         <div class="inner">
