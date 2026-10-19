@@ -16,13 +16,6 @@
                     </div>
                 </div>
 
-                <article class="sintixyan">
-                    <!-- <img src="<?php echo esc_url(get_theme_file_uri('/blog_img/sintixyan2.png')); ?>" alt="クレヨンしんちゃん公式サイトのトップページ"> -->
-                </article>
-
-                <article class="koimikuji">
-                    <!-- <img src="<?php echo esc_url(get_theme_file_uri('/blog_img/koimikuji.png')); ?>" alt="恋みくじサイトのトップページ"> -->
-                </article>
 
             </section>
 
